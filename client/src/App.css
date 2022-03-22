@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.app{
+  height: 100vh;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+
+  display: flex;
+}
+
+/* ======================================= */
+/* Nav */
+/* ======================================= */
+
+nav{
+  width: 25%;
+  color: white;
+  background-color: #161616;
+  padding: 0 1rem;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-header{
+  height: 4rem;
+  border-bottom: 1px solid white;
+
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.favourites-btn{
+  height: 2rem;
+  width: 10rem;
+  color: white;
+  background-color: transparent;
+  border: 2px solid lime;
+  border-radius: 100px;
+  text-decoration: none;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-main .search-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-main input{
+  height: 3rem;
+  width: 100%;
+  padding: 0 0.5rem;
+  border: none;
+  border-radius: 0px;
+  outline: none;
+  margin: 1rem 0;
+}
+
+.nav-main .search-btn{
+  height: 3rem;
+  min-width: 3rem;
+  background-color: transparent;
+  border: 2px solid lime;
+  border-radius: 50px;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+
+/* ======================================= */
+/* Menu */
+/* ======================================= */
+
+select{
+  height: 3rem;
+  width: 78%;
+  background-color: white;
+  border: none;
+  border-radius: 0px;
+}
+
+/* ======================================= */
+/* Main */
+/* ======================================= */
+
+main{
+  width: 75%;
+  background-color: #2f2f2f;
+
+  display: grid;
+  grid-template-columns: repeat(autofit, minmax(30rem,1fr));
+  overflow: auto;
+  padding: 0.5rem;
+}
+
+main h3{
+  color: white;
+}
+
+/* ======================================= */
+/* Card */
+/* ======================================= */
+
+.card{
+  min-height: 6rem;
+  color: white;
+  margin: 0.3rem 0;
+  transition: all 0.3s ease-out;
+
+  display: flex;
+}
+
+.card:hover{
+  border-left: 5px solid lime;
+  padding-left: 1rem;
+  cursor: pointer;
+}
+
+.card img{
+  height: 100%;
+  object-fit: cover;
+  margin-right: 0.5rem;
+}
+
+.card .details{
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.card button{
+  height: 100%;
+  width: 2rem;
+  border: none;
+  border-radius: 0px;
+  margin-top: 0.5rem;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ======================================= */
+/* Favourites */
+/* ======================================= */
+
+.favourites{
+  height: 100vh;
+  width: 100vw;
+  color: white;
+  background-color: rgba(0,100,0,0.5);
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  position: fixed;
+}
+
+.modal{
+  height: 35rem;
+  width: 65rem;
+  background-color: #2f2f2f;
+  border-radius: 10px;
+  padding: 0.5rem;
+  overflow: auto;
+}
+
+.modal header{
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.modal header h2:nth-child(2){
+  cursor: pointer;
+}
+
+/* ======================================= */
+/* Small Card */
+/* ======================================= */
+
+.small-card{
+  min-height: 6rem;
+  width: 100%;
+  color: white;
+  margin: 0.3rem 0;
+
+  display: flex;
+}
+
+.small-card img{
+  height: 100%;
+  min-width: 5rem;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-right: 0.5rem;
+}
+
+.small-card .details{
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.small-card button{
+  min-height: 100%;
+  width: 2rem;
+  border: none;
+  margin-top: 0.5rem;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ======================================= */
+/* Notification */
+/* ======================================= */
+
+.notification{
+  height: 5rem;
+  width: 30rem;
+  background-color: #161616;
+  padding: 0.5rem;
+  
+  position: fixed;
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+.notification p{
+  color: lime;
+  font-size: 1.2rem;
+}
