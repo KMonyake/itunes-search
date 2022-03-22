@@ -38,17 +38,17 @@ cd to the 'client' folder
 Run **npm install**
 
 (2)
-cd to the 'server' folder
+cd to the root folder
 Run **npm install**
 
 ### Start the server
 
 (3)
-cd to the 'server' folder
+cd to the root folder
 Run **npm start**
 
 (4)
-cd to the 'client' folder
+cd to the root folder
 Run **npm install**
 
 ----
@@ -57,7 +57,7 @@ This app uses helmet to ensure iframes only work from the same origin, to preven
 
 It also enforces a https connection from the browser to our server
 
-The itunes api does not require any type of authentication or api keys to work. It is completely free
+The itunes api does not require any type of authentication or api keys to work. It is completely free!
 
 
 

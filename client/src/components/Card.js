@@ -1,7 +1,7 @@
 
 export default function Card({
     // Destructuring for easier prop names
-    trackId: id,
+    id,
     artistName: name,
     artworkUrl100: art, 
     collectionName,
@@ -19,7 +19,7 @@ export default function Card({
         // Added the item to the favourites collection
         setFavouritesList([...favouritesList, currentItem]);
         // Trigger a notifcaion to show that an item was added to the favourites collection
-        setNotificationMessage("Added to favourites.")
+        setNotificationMessage("Added to favourites.");
     }
 
     return (

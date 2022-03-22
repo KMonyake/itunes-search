@@ -16,11 +16,11 @@ export default function Favourites({ favouritesList, setFavouritesList, setIsFav
                         favouritesList.map(result => {
                             return (
                                 <SmallCard 
-                                key={result.id} 
-                                {...result} 
-                                // Prop drilling the favouritesList for further use in the SmallCard component
-                                favouritesList={favouritesList} 
-                                setFavouritesList={setFavouritesList}
+                                    key={result.id} 
+                                    {...result} 
+                                    // Prop drilling the favouritesList for further use in the SmallCard component
+                                    favouritesList={favouritesList} 
+                                    setFavouritesList={setFavouritesList}
                                 />
                             )
                         })

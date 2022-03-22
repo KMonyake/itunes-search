@@ -16,11 +16,13 @@ app.post("/", (req, res) => {
     const entity = req.body.entity;
 
     if(entity){
-        userURL = (`https://itunes.apple.com/search?term=${query}&entity=${entity}&limit=10`);
+        userURL = (`https://itunes.apple.com/search?term=${query}&entity=${entity}&limit=20`);
     }
     else{
-        userURL = (`https://itunes.apple.com/search?term=${query}&limit=10`);
+        userURL = (`https://itunes.apple.com/search?term=${query}&limit=20`);
     }
+
+    console.log(userURL);
 
     // Return the fetched data and send it to the front-end as json
     axios.get(userURL)

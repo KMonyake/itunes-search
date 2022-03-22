@@ -9,52 +9,42 @@ import Notification from "./components/Notification";
 
 export default function App() {
   const [data, setData] = useState([]);
-  const [query, setQuery] = useState("");
-  const [entity, setEntity] = useState("");
+  const [userSearch, setUserSearch] = useState({
+    query: "",
+    entity:"",
+  });
+  const [loading, setLoading] = useState(false);
   const [isFavouritesOpen, setIsFavouritesOpen] = useState(false);
   const [favouritesList, setFavouritesList] = useState([]);
   const [notificationMessage, setNotificationMessage] = useState("");
 
-  // Handles the user's searched term
-  function handleInput(e){
-    const userInput = e.target.value;
-    const wordArr = [];
-
-    // Convert empty spaces into a plus sign (+)
-    for(let i = 0; i < userInput.length; i++){
-      if(userInput[i] === " "){
-        wordArr.push("+");
-      }
-      else{
-        wordArr.push(userInput[i]);
-      }
-    }
-
-    // Convert array back into a single string concatenated by plus signs (+) , e.g 'sponge+bob'
-    setQuery(wordArr.join(""));
-  }
-
-  // Handles the user selecton from the select element
+  // Gets the user selecton from the select element
   function handleSelect(e){
-    const userChoice = e.target.value;
-    setEntity(userChoice);
+    setUserSearch({...userSearch, entity: e.target.value});
   }
 
-  //fetches data from the back-end
+  // Fetches data from the back-end
   async function getData(e){
     // prevent page refresh because it wipes out fetched results
     e.preventDefault();
+
+    // Show loading screen to user
+    setLoading(true);
     
     // Programatically sends a json object to the server containing relevant user request data
     const options = {
       method: 'POST',
       headers: {"Content-Type": "application/json"},
-      body: JSON.stringify({ query, entity })
+      body: JSON.stringify(userSearch)
     }
     
     const fetchedData = await (await fetch("/", options)).json();
+
     // Add back-end data to data state
     setData(fetchedData);
+
+    // Remove loading screen
+    setLoading(false);
   }
 
   return (
@@ -67,7 +57,11 @@ export default function App() {
         </div>
         <div className="nav-main">
           <form className="search-container" onSubmit={getData}>
-            <input type="text" placeholder="search" onInput={handleInput}/>
+            <input 
+              type="text" 
+              placeholder="search" 
+              onInput={(e) => setUserSearch({...userSearch, query: e.target.value})}
+            />
             <button type="submit" className="search-btn">🔍</button>
           </form>
           <div className="select-section">
@@ -91,23 +85,26 @@ export default function App() {
       <main>
         {/* Map out each result to a card component, that shows the image and details or indicate lack of results */}
         {
-          data.length !== 0?
+          (!loading && data.length !== 0) &&
             data.map(result => {
+              // Destructure properites 
+              const {collectionId, artistId, collectionArtistId } = result;
               return (
                 <Card 
                   {...result} 
-                  key={result.trackId} 
+                  key={collectionId || artistId || collectionArtistId} 
+                  id={collectionId || artistId || collectionArtistId}
                   favouritesList={favouritesList}
                   setFavouritesList={setFavouritesList}
                   setNotificationMessage={setNotificationMessage}
                 />
-                )
-              })
-              :
-            <h3>It's lonely here. Try searching for something🐶</h3>
+              )
+            })
         }
+        {(data.length === 0 && !loading) && <h3>Either you have not searched for anything or it's not found</h3>}
+        {loading && <h3>...Loading</h3>}
       </main>
-      {/* Add 'favourited'(liked items) results to the favourites components */}
+      {/* Add 'favourite-ed'(liked items) results to the favourites components */}
       {
         isFavouritesOpen && 
           <Favourites 
